@@ -1,0 +1,404 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>第三章 数据链路 | Riyuu学习录</title><meta name="keywords" content="博客,Riyuu"><meta name="author" content="Riyuu"><meta name="copyright" content="Riyuu"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="数据链路的作用数据链路层的协议定义了通过通信媒介互连的设备之间的传输规范，数据链路层处理的不是单纯的0,1序列，该层把他们集合为一个叫做帧（分组数据）的块，然后在进行传输的。 在以太网与FDDI(光纤分布式数据接口)的规范中，不仅包含ISO参考模型第二层数据链路层，也规定了第一层物理层的规格，而在ATM中(异步传输方式)规范中，还包含第三层网络层的一部分功能。    数据链路层的主要作用：在">
+<meta property="og:type" content="article">
+<meta property="og:title" content="第三章 数据链路">
+<meta property="og:url" content="https://riyuu117.github.io/2021/10/19/%E7%AC%AC%E4%B8%89%E7%AB%A0%20%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF/index.html">
+<meta property="og:site_name" content="Riyuu学习录">
+<meta property="og:description" content="数据链路的作用数据链路层的协议定义了通过通信媒介互连的设备之间的传输规范，数据链路层处理的不是单纯的0,1序列，该层把他们集合为一个叫做帧（分组数据）的块，然后在进行传输的。 在以太网与FDDI(光纤分布式数据接口)的规范中，不仅包含ISO参考模型第二层数据链路层，也规定了第一层物理层的规格，而在ATM中(异步传输方式)规范中，还包含第三层网络层的一部分功能。    数据链路层的主要作用：在">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://riyuu117.github.io/img/%E5%9B%BE%E8%A7%A3TCP&IP/cover.jpg">
+<meta property="article:published_time" content="2021-10-19T12:55:00.000Z">
+<meta property="article:modified_time" content="2021-10-21T03:17:06.211Z">
+<meta property="article:author" content="Riyuu">
+<meta property="article:tag" content="博客,Riyuu">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://riyuu117.github.io/img/%E5%9B%BE%E8%A7%A3TCP&IP/cover.jpg"><link rel="shortcut icon" href="/./img/favicon.ico"><link rel="canonical" href="https://riyuu117.github.io/2021/10/19/%E7%AC%AC%E4%B8%89%E7%AB%A0%20%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    jQuery: 'https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js',
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+    },
+    fancybox: {
+      js: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css'
+    }
+  },
+  isPhotoFigcaption: true,
+  islazyload: false,
+  isanchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '第三章 数据链路',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2021-10-21 11:17:06'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if (GLOBAL_CONFIG_SITE.isHome && /iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    document.addEventListener('pjax:complete', detectApple)})(window)</script><meta name="generator" content="Hexo 5.4.0"></head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/./img/umi.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">文章</div><div class="length-num">6</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-align-left"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-list"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fas fa-cocktail"></i><span> 生活</span><i class="fas fa-chevron-down expand hide"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/photo/"><i class="fa-fw far fa-image"></i><span> 相册</span></a></li><li><a class="site-page child" href="/note/"><i class="fa-fw fas fa-sticky-note"></i><span> 日记</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于我</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/img/%E5%9B%BE%E8%A7%A3TCP&amp;IP/cover.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">Riyuu学习录</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-align-left"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-list"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fas fa-cocktail"></i><span> 生活</span><i class="fas fa-chevron-down expand hide"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/photo/"><i class="fa-fw far fa-image"></i><span> 相册</span></a></li><li><a class="site-page child" href="/note/"><i class="fa-fw fas fa-sticky-note"></i><span> 日记</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于我</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">第三章 数据链路</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2021-10-19T12:55:00.000Z" title="发表于 2021-10-19 20:55:00">2021-10-19</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2021-10-21T03:17:06.211Z" title="更新于 2021-10-21 11:17:06">2021-10-21</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">2.7k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>8分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="第三章 数据链路"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><img src="/img/图解TCP&IP/chapter3/思维导图.jpg" alt="思维导图" style="zoom:50%;" />
+
+
+<h2 id="数据链路的作用"><a href="#数据链路的作用" class="headerlink" title="数据链路的作用"></a>数据链路的作用</h2><p>数据链路层的协议定义了<strong>通过通信媒介互连的设备之间的传输规范</strong>，数据链路层处理的不是单纯的0,1序列，该层把他们集合为一个叫做<strong>帧</strong>（分组数据）的块，然后在进行传输的。</p>
+<p>在以太网与FDDI(光纤分布式数据接口)的规范中，不仅包含ISO参考模型<strong>第二层数据链路层</strong>，也规定了<strong>第一层物理层</strong>的规格，而在ATM中(异步传输方式)规范中，还包含<strong>第三层网络层</strong>的一部分功能。</p>
+<img src="/img/图解TCP&IP/chapter3/数据链路.jpg" style="zoom:50%;" />
+
+<blockquote>
+<p><strong>数据链路层的主要作用：在互连同一种数据链路的节点之间进行包传递</strong></p>
+</blockquote>
+<h3 id="网络拓扑"><a href="#网络拓扑" class="headerlink" title="网络拓扑"></a>网络拓扑</h3><p><strong>网络的连接和构成的形态，包括总线型，环型，星型，网状型等。</strong></p>
+<img src="/img/图解TCP&IP/chapter3/网络拓扑.jpg" style="zoom:50%;" />
+
+
+
+
+
+<h2 id="数据链路的相关技术"><a href="#数据链路的相关技术" class="headerlink" title="数据链路的相关技术"></a>数据链路的相关技术</h2><h3 id="MAC地址"><a href="#MAC地址" class="headerlink" title="MAC地址"></a>MAC地址</h3><p><strong>用于识别数据链路层中互连的节点</strong>，在以太网或FDDI中，根据规范使用MAC地址。在总线型与环路型的网络中，<strong>先暂时获取所有目标站的帧</strong>，然后在通过MAC 寻址：</p>
+<img src="/img/图解TCP&IP/chapter3/MAC地址判断目标地址.jpg" style="zoom:50%;" />
+
+<p>MAC地址长<strong>48比特</strong>，在使用NIC的情况下，MAC地址一般会烧入到ROW中，所以<strong>任意一个MAC地址都是唯一的</strong>。</p>
+<img src="/img/图解TCP&IP/chapter3/MAC地址格式.jpg" style="zoom:50%;" alt="IEEE802.3规范的MAC地址格式"/>
+
+
+
+<blockquote>
+<p>1.由于规范时没有限定数据链路的类型，因此无论哪种数据链路的网络，都不会用相同的MAC地址</p>
+<p>2.相同数据链路下，MAC地址一定唯一；否则不一定（ex：虚拟机）</p>
+</blockquote>
+<h3 id="共享介质型网络"><a href="#共享介质型网络" class="headerlink" title="共享介质型网络"></a>共享介质型网络</h3><p>定义：<strong>多个设备共享一个通信介质的网络</strong>。</p>
+<p>特点：半双工通信，即同一时间只有一台设备发送或接受数据。</p>
+<p>应用：早期的以太网、FDDI</p>
+<p>共享介质型网络可以根据介质访问控制分为争用方式和令牌传递方式。</p>
+<h4 id="争用方式"><a href="#争用方式" class="headerlink" title="争用方式"></a>争用方式</h4><p>是指争夺获取数据传输的权利，也称<strong>CSMA(载波监听多路访问)，</strong>通常令网络中的各个站采用<strong>先到先得</strong>的方式占用信道发送数据，但<strong>多站同时发送帧，产生冲突现象。</strong></p>
+<img src="/img/图解TCP&IP/chapter3/争用方式.jpg" style="zoom:50%;" />
+
+
+
+<p><strong>改良：⭐CSMA/CD，即要求每个站提前检查冲突，一旦发送冲突，则尽早释放信道。</strong></p>
+<blockquote>
+<p>冲突检测通过同轴线缆的电压检查实现</p>
+</blockquote>
+<img src="/img/图解TCP&IP/chapter3/CSMA.jpg" style="zoom:50%;" />
+
+
+
+<h4 id="令牌传递方式"><a href="#令牌传递方式" class="headerlink" title="令牌传递方式"></a>令牌传递方式</h4><p>沿着令牌环发送一种叫做“<strong>令牌</strong>”的特殊报文，控制传输的一种，<strong>只有获得令牌的站才能发送</strong>。这种方式有两个特点:一是<strong>不会有冲突</strong>，二是每个站都有通过<strong>平等循环</strong>获得令牌的机会。因此，即使网络拥堵也不会导致性能下降。</p>
+<blockquote>
+<p>缺点：因为按照令牌环顺序依次传递，因此网络不太拥堵时数据链路的利用率低。</p>
+<p>解决：令牌追加、多个令牌同时循环等。</p>
+</blockquote>
+<img src="/img/图解TCP&IP/chapter3/令牌传递方式.jpg" style="zoom:50%;" />
+
+
+
+<h3 id="非共享介质网络"><a href="#非共享介质网络" class="headerlink" title="非共享介质网络"></a><strong>非共享介质网络</strong></h3><p>定义：不共享介质，对介质采用<strong>专用</strong>的一种传输控制方式。</p>
+<p>特点：<strong>全双工通信方式</strong>，即网络中的每个站直连<strong>交换机</strong>，由<strong>交换机负责转发数据帧</strong>，发送端与接受端不共享通行介质，也可以根据交换机的高级特性构建虚拟局域网(VLAN),进行流量控制。</p>
+<p>应用：<strong>以太网主流的方式</strong>、ATM</p>
+<img src="/img/图解TCP&IP/chapter3/非共享介质网络.jpg" style="zoom:50%;" />
+
+<h3 id="半双工与全双工通信"><a href="#半双工与全双工通信" class="headerlink" title="半双工与全双工通信"></a>半双工与全双工通信</h3><ul>
+<li><p>半双工：只发送或者只接受的通行方式，类似与无线电收发器，两端同时说话，听不见对方说话，而全双工不同，允许在同一时间即可以发送数据也可以接受数据，类似与电话。</p>
+</li>
+<li><p>全双工通信；在使用交换机与<strong>双绞线电缆（或光纤电缆）</strong>的情况，即可以通过交换机的端口与计算机之间进行一对一的连接，也可以通过<strong>相连电缆内部的收发线路分别进行接受和发送数据</strong>，即实现同时收发的全双工通信。</p>
+<img src="/img/图解TCP&IP/chapter3/全双工.jpg" style="zoom:50%;" /></li>
+</ul>
+<blockquote>
+<p>双绞线一般包着8个芯线</p>
+</blockquote>
+<h3 id="根据MAC地址转发"><a href="#根据MAC地址转发" class="headerlink" title="根据MAC地址转发"></a>根据MAC地址转发</h3><p><strong>非介质共享型网络</strong>使用的<strong>交换机</strong>应用在以太网中的技术，又称<strong>以太网交换机</strong>，它根据数据链路层中每个帧的目标MAC地址，决定从那个网络端口发送数据（根据<strong>转发表Forwarding Table</strong>），数据链路层的每个通过点在接到包时，会从中将<strong>源MAC地址以及曾经接收该地址发送的数据包的接口作为对应关系记录到转发表中</strong>，以某个MAC地址作为源地址的包由一接口接收，实际上可以理解为该MAC地址就是该接口的目标。可说该MAC地址作为目标地址的包，经由该接口送上出即可，这一过程称<strong>交换机的自学过程</strong>。</p>
+<img src="/img/图解TCP&IP/chapter3/交换机自学过程.jpg" style="zoom:50%;" />
+
+<blockquote>
+<p>转发表可以根据数据链路的类型进行分层，便于快速检索</p>
+</blockquote>
+<p>交换机的<strong>转发方式</strong>：一种叫做<strong>存储转发</strong>，另一种叫<strong>直通转发</strong></p>
+<blockquote>
+<p>交换机会对接受到的数据进行拆包检查</p>
+</blockquote>
+<img src="/img/图解TCP&IP/chapter3/转发方式.jpg" style="zoom:50%;" />
+
+
+
+<h3 id="环路检测技术"><a href="#环路检测技术" class="headerlink" title="环路检测技术"></a><strong>环路检测技术</strong></h3><p>原因：通过网桥连接网络时，由于<strong>网桥会将数据帧拷贝到相连的链路</strong>，一旦出现<strong>环路</strong>，<strong>数据帧会一直被循环转发</strong>。</p>
+<p>处理：<strong>具体有生成树与源路由两种方式</strong>。如果使用具有这些功能的网桥,那么即使构建了一个带有环路的网络,也不会造成那么严重的问题。只要搭建合适的环路,就能分散网络流量,在发生某一处路由故障时选择绕行,可以提高容灾能力。</p>
+<img src="/img/图解TCP&IP/chapter3/环路检测.jpg" style="zoom:50%;" />
+
+
+
+<h3 id="VLAN（虚拟局域网）"><a href="#VLAN（虚拟局域网）" class="headerlink" title="VLAN（虚拟局域网）"></a>VLAN（虚拟局域网）</h3><p><strong>交换机按照其端口区分了多个网段,从而区分了广播数据传播的范围、减少了网络负载并提高了网络的安全性。然而异构的两个网段之间,就需要利用具有路由功能的交换机(如3层交换机),或在各段中间通过路由器的连接才能实现通信。</strong></p>
+<blockquote>
+<p>当需要划分不同网段时，不必改造硬件线路，用3层交换机代替2层交换机即可以解决。</p>
+</blockquote>
+<img src="/img/图解TCP&IP/chapter3/VLAN.jpg" style="zoom:50%;" />
+
+<p><strong>VLAN ID可以唯一表示每个网段，当交换机传输帧时，交换机会在以太网首部中加入VID标签，根据这个值决定将数据帧发送给哪个网段。</strong></p>
+<h2 id="以太网"><a href="#以太网" class="headerlink" title="以太网"></a>以太网</h2><p>优点：<strong>以太网规范简单，易于NIC(网卡)即驱动程序实现。</strong></p>
+<p>类型：一般的以太网，IEEE802.3规范的以太网。</p>
+<blockquote>
+<ul>
+<li><strong>传输速度与计算机内部的表现值，2^10 ==1000;1k = 1024;1M = 1024k;1G = 1024M;</strong></li>
+<li><strong>传输速率：1k = 1000,1M =1000k; 1G = 1000M;</strong></li>
+</ul>
+</blockquote>
+<h3 id="以太网的帧格式"><a href="#以太网的帧格式" class="headerlink" title="以太网的帧格式"></a>以太网的帧格式</h3><p><strong>前导码</strong>（Preamble）: 以太网帧前端部分，表示<strong>一个以太网帧的开始</strong>，也是对端网卡能够确保与其同步的标志。在此之后才是以太网帧的本体。</p>
+<img src="/img/图解TCP&IP/chapter3/前导码.jpg" style="zoom:50%;" />
+
+<p>以太网帧格式：</p>
+<img src="/img/图解TCP&IP/chapter3/帧格式.jpg" style="zoom:50%;" />
+
+<p>目标MAC地址：<strong>存放目标工作站的物理地址（比如区间交换机MAC地址，不完全等于接受端MAC地址）</strong></p>
+<p>源MAC地址：<strong>存放构造以太网帧的发送端工作站的物理地址</strong>（不完全等于源发送端MAC地址）</p>
+<p>类型：上层协议类型。</p>
+<p>FCS（Frame Check Sequence）:帧检验序列，<strong>检测帧的完整性</strong>。发送端与接受端计算的FCS值相同，可以判定接受的帧没有差错。</p>
+<p><strong>帧根据以太网类型的不同</strong>：</p>
+<p><strong>IEEE802.3以太网帧不同</strong>：原表示上层协议的字段表示<strong>帧长度</strong>；标识上层协议的字段在<strong>SNAP</strong>中。</p>
+<p><strong>VLAN</strong>：交换机会追加VLAN ID。</p>
+<img src="/img/图解TCP&IP/chapter3/VLAN帧.jpg" style="zoom:50%;" />
+
+<h3 id="数据链路的分层"><a href="#数据链路的分层" class="headerlink" title="数据链路的分层"></a>数据链路的分层</h3><p><strong>介质访问控制层（MAC层）</strong>：根据不同数据链路所<strong>特有的首部信息</strong>进行控制。</p>
+<p><strong>逻辑链路控制层（LLC层）</strong>：根据不同数据链路所<strong>共有的帧头信息</strong>进行控制。</p>
+<img src="/img/图解TCP&IP/chapter3/数据链路分层.jpg" style="zoom:50%;" />
+
+<blockquote>
+<p><strong>帧通过不同的数据链路会发送变化：MAC层会发送变化，而LLC层不会变化！</strong></p>
+</blockquote>
+<h2 id="无线通信"><a href="#无线通信" class="headerlink" title="无线通信"></a>无线通信</h2><p><strong>无线通讯的种类</strong>：</p>
+<img src="/img/图解TCP&IP/chapter3/无线通信的种类.jpg" style="zoom:50%;" />
+
+
+
+<p><strong>无线LAN的连接</strong>：</p>
+<img src="/img/图解TCP&IP/chapter3/无线LAN连接.jpg" style="zoom:50%;" />
+
+
+
+<h2 id="PPP"><a href="#PPP" class="headerlink" title="PPP"></a>PPP</h2><p>Point-to-point Protocol是指<strong>点对点</strong>，即<strong>一对一连接的计算机协议</strong>，ppp相当于计算机OSI参考模型的<strong>第二层的数据链路层</strong>，ppp可以使用电话线，专用线，ATW线，在传输前，需要建立ppp连接。</p>
+<p>ppp包括两个协议：一个是不依赖上层的LCP协议(Link Control Protocol)，另一个是依赖上层的NCP(Network Control Protocol)协议，如果上层为IP，则叫IPCP。LCP：主要负责建立和断开连接，设置最大接受单元(MRU)，设置验证协议(PAP或CHAP)，以及设置是否进行通行质量的监控，IPCP则负责IP地址设置以及是否进行TCP/IP首部压缩等设备。</p>
+<h2 id="其他数据链路"><a href="#其他数据链路" class="headerlink" title="其他数据链路"></a>其他数据链路</h2><p><strong>ATM</strong>:（Asynchronous Transfer Mode）：是以一个叫做信元(5字节首部加48字节数据)的单位进行传输的数据链路，其线路占用时间短和能够高效传输大容量数据等特点主要用于<strong>广域网</strong>的连接，是一种<strong>面向连接</strong>的链路通讯前要设置通信线路。</p>
+<p><strong>主要的数据链路类型</strong>：</p>
+<img src="/img/图解TCP&IP/chapter3/数据链路类型.jpg" style="zoom:50%;" />
+
+
+
+<h2 id="公共网络"><a href="#公共网络" class="headerlink" title="公共网络"></a>公共网络</h2><h4 id="VPN"><a href="#VPN" class="headerlink" title="VPN"></a>VPN</h4><p><strong>虚拟专用网络</strong>（VPN）用于<strong>连接距离较远的地域</strong>。这种服务包括IP-VPN和广域以太网。</p>
+<p>IP-VPN意指在IP网络(互联网)上建立VPN</p>
+<blockquote>
+<p>网络服务商提供一种在IP网络上使用MPLS技术构建VPN的服务。其中MPLS (Multiprotocol Label Switching,多协议标签交换)在IP包中附加一个叫做标签(Label”)的信息进行传输控制。每个用户的标签信息不同,因此在通过MPIS网时,可以轻松地判断出目标地址。这样一来就可以将多个不同用户的VPN信息通过MPIS网加以区分,形成封闭的私有网络。此外,还能进行用户级的带宽控制。</p>
+</blockquote>
+<img src="/img/图解TCP&IP/chapter3/VPN.jpg" style="zoom:50%;" />
+
+<p><strong>有时企业还可以在互联网上建立自己的VPN”,一般采用的是IPsec”技术</strong>。该方法对VPN通信中的IP包进行验证和加密,在互联网上构造一个封闭的私有网络。虽然这种方式可以利用价格低康的互联网通信线路,并且还可以根据自己的情况对数据进行不同级别的加密,但有时会受到网络拥堵的影响 。</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">Riyuu</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://riyuu117.github.io/2021/10/19/%E7%AC%AC%E4%B8%89%E7%AB%A0%20%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF/">https://riyuu117.github.io/2021/10/19/%E7%AC%AC%E4%B8%89%E7%AB%A0%20%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://riyuu117.github.io" target="_blank">Riyuu学习录</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"></div><div class="post_share"><div class="social-share" data-image="/img/%E5%9B%BE%E8%A7%A3TCP&amp;IP/cover.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2021/10/24/%E7%AC%AC%E5%9B%9B%E7%AB%A0%20IP%E5%8D%8F%E8%AE%AE/"><img class="prev-cover" src="/img/%E5%9B%BE%E8%A7%A3TCP&amp;IP/cover.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">第四章 IP协议</div></div></a></div><div class="next-post pull-right"><a href="/2021/10/17/%E7%AC%AC%E4%BA%8C%E7%AB%A0%20TCPIP%E5%9F%BA%E7%A1%80/"><img class="next-cover" src="/img/%E5%9B%BE%E8%A7%A3TCP&amp;IP/cover.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">第二章 TCP/IP基础知识</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/./img/umi.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Riyuu</div><div class="author-info__description">欢迎交流分享</div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">6</div></a></div></div><a class="button--animated" id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/Riyuu117" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="/785509392@qq.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn card-announcement-animation"></i><span>公告</span></div><div class="announcement_content">欢迎来到Riyuu的博客</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E7%9A%84%E4%BD%9C%E7%94%A8"><span class="toc-number">1.</span> <span class="toc-text">数据链路的作用</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BD%91%E7%BB%9C%E6%8B%93%E6%89%91"><span class="toc-number">1.1.</span> <span class="toc-text">网络拓扑</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E7%9A%84%E7%9B%B8%E5%85%B3%E6%8A%80%E6%9C%AF"><span class="toc-number">2.</span> <span class="toc-text">数据链路的相关技术</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#MAC%E5%9C%B0%E5%9D%80"><span class="toc-number">2.1.</span> <span class="toc-text">MAC地址</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%B1%E4%BA%AB%E4%BB%8B%E8%B4%A8%E5%9E%8B%E7%BD%91%E7%BB%9C"><span class="toc-number">2.2.</span> <span class="toc-text">共享介质型网络</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BA%89%E7%94%A8%E6%96%B9%E5%BC%8F"><span class="toc-number">2.2.1.</span> <span class="toc-text">争用方式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BB%A4%E7%89%8C%E4%BC%A0%E9%80%92%E6%96%B9%E5%BC%8F"><span class="toc-number">2.2.2.</span> <span class="toc-text">令牌传递方式</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%9D%9E%E5%85%B1%E4%BA%AB%E4%BB%8B%E8%B4%A8%E7%BD%91%E7%BB%9C"><span class="toc-number">2.3.</span> <span class="toc-text">非共享介质网络</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8D%8A%E5%8F%8C%E5%B7%A5%E4%B8%8E%E5%85%A8%E5%8F%8C%E5%B7%A5%E9%80%9A%E4%BF%A1"><span class="toc-number">2.4.</span> <span class="toc-text">半双工与全双工通信</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A0%B9%E6%8D%AEMAC%E5%9C%B0%E5%9D%80%E8%BD%AC%E5%8F%91"><span class="toc-number">2.5.</span> <span class="toc-text">根据MAC地址转发</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%8E%AF%E8%B7%AF%E6%A3%80%E6%B5%8B%E6%8A%80%E6%9C%AF"><span class="toc-number">2.6.</span> <span class="toc-text">环路检测技术</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#VLAN%EF%BC%88%E8%99%9A%E6%8B%9F%E5%B1%80%E5%9F%9F%E7%BD%91%EF%BC%89"><span class="toc-number">2.7.</span> <span class="toc-text">VLAN（虚拟局域网）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%A5%E5%A4%AA%E7%BD%91"><span class="toc-number">3.</span> <span class="toc-text">以太网</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%A5%E5%A4%AA%E7%BD%91%E7%9A%84%E5%B8%A7%E6%A0%BC%E5%BC%8F"><span class="toc-number">3.1.</span> <span class="toc-text">以太网的帧格式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E7%9A%84%E5%88%86%E5%B1%82"><span class="toc-number">3.2.</span> <span class="toc-text">数据链路的分层</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%97%A0%E7%BA%BF%E9%80%9A%E4%BF%A1"><span class="toc-number">4.</span> <span class="toc-text">无线通信</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#PPP"><span class="toc-number">5.</span> <span class="toc-text">PPP</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%B6%E4%BB%96%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF"><span class="toc-number">6.</span> <span class="toc-text">其他数据链路</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%AC%E5%85%B1%E7%BD%91%E7%BB%9C"><span class="toc-number">7.</span> <span class="toc-text">公共网络</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#VPN"><span class="toc-number">7.0.1.</span> <span class="toc-text">VPN</span></a></li></ol></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2021/10/24/%E7%AC%AC%E5%9B%9B%E7%AB%A0%20IP%E5%8D%8F%E8%AE%AE/" title="第四章 IP协议"><img src="/img/%E5%9B%BE%E8%A7%A3TCP&amp;IP/cover.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="第四章 IP协议"/></a><div class="content"><a class="title" href="/2021/10/24/%E7%AC%AC%E5%9B%9B%E7%AB%A0%20IP%E5%8D%8F%E8%AE%AE/" title="第四章 IP协议">第四章 IP协议</a><time datetime="2021-10-24T12:12:00.000Z" title="发表于 2021-10-24 20:12:00">2021-10-24</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/10/19/%E7%AC%AC%E4%B8%89%E7%AB%A0%20%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF/" title="第三章 数据链路"><img src="/img/%E5%9B%BE%E8%A7%A3TCP&amp;IP/cover.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="第三章 数据链路"/></a><div class="content"><a class="title" href="/2021/10/19/%E7%AC%AC%E4%B8%89%E7%AB%A0%20%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF/" title="第三章 数据链路">第三章 数据链路</a><time datetime="2021-10-19T12:55:00.000Z" title="发表于 2021-10-19 20:55:00">2021-10-19</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/10/17/%E7%AC%AC%E4%BA%8C%E7%AB%A0%20TCPIP%E5%9F%BA%E7%A1%80/" title="第二章 TCP/IP基础知识"><img src="/img/%E5%9B%BE%E8%A7%A3TCP&amp;IP/cover.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="第二章 TCP/IP基础知识"/></a><div class="content"><a class="title" href="/2021/10/17/%E7%AC%AC%E4%BA%8C%E7%AB%A0%20TCPIP%E5%9F%BA%E7%A1%80/" title="第二章 TCP/IP基础知识">第二章 TCP/IP基础知识</a><time datetime="2021-10-17T09:29:00.000Z" title="发表于 2021-10-17 17:29:00">2021-10-17</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/10/15/%E7%AC%AC%E4%B8%80%E7%AB%A0%20%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/" title="第一章 网络基础知识"><img src="/img/%E5%9B%BE%E8%A7%A3TCP&amp;IP/cover.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="第一章 网络基础知识"/></a><div class="content"><a class="title" href="/2021/10/15/%E7%AC%AC%E4%B8%80%E7%AB%A0%20%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/" title="第一章 网络基础知识">第一章 网络基础知识</a><time datetime="2021-10-15T09:37:00.000Z" title="发表于 2021-10-15 17:37:00">2021-10-15</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/10/09/%E7%AC%AC%E4%B8%80%E4%B8%AA%E6%96%87%E7%AB%A0/" title="第一个文章"><img src="https://cdn.jsdelivr.net/gh/jerryc127/CDN@latest/cover/default_bg.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="第一个文章"/></a><div class="content"><a class="title" href="/2021/10/09/%E7%AC%AC%E4%B8%80%E4%B8%AA%E6%96%87%E7%AB%A0/" title="第一个文章">第一个文章</a><time datetime="2021-10-09T03:31:16.000Z" title="发表于 2021-10-09 11:31:16">2021-10-09</time></div></div></div></div></div></div></main><footer id="footer" style="background-image: url('/img/%E5%9B%BE%E8%A7%A3TCP&amp;IP/cover.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2021 By Riyuu</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><div class="search-dialog__title" id="local-search-title">本地搜索</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div></div><hr/><div id="local-search-results"></div><span class="search-close-button"><i class="fas fa-times"></i></span></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://cdn.jsdelivr.net/npm/pangu/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (false){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><script src="/js/search/local-search.js"></script><div class="js-pjax"></div><script src="https://cdn.jsdelivr.net/npm/pjax/pjax.min.js"></script><script>let pjaxSelectors = [
+  'title',
+  '#config-diff',
+  '#body-wrap',
+  '#rightside-config-hide',
+  '#rightside-config-show',
+  '.js-pjax'
+]
+
+if (false) {
+  pjaxSelectors.unshift('meta[property="og:image"]', 'meta[property="og:title"]', 'meta[property="og:url"]')
+}
+
+var pjax = new Pjax({
+  elements: 'a:not([target="_blank"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+  analytics: false,
+  scrollRestoration: false
+})
+
+document.addEventListener('pjax:send', function () {
+
+  // removeEventListener scroll 
+  window.removeEventListener('scroll', window.tocScrollFn)
+  window.removeEventListener('scroll', scrollCollect)
+
+  typeof preloader === 'object' && preloader.initLoading()
+  
+  if (window.aplayers) {
+    for (let i = 0; i < window.aplayers.length; i++) {
+      if (!window.aplayers[i].options.fixed) {
+        window.aplayers[i].destroy()
+      }
+    }
+  }
+
+  typeof typed === 'object' && typed.destroy()
+
+  //reset readmode
+  const $bodyClassList = document.body.classList
+  $bodyClassList.contains('read-mode') && $bodyClassList.remove('read-mode')
+
+})
+
+document.addEventListener('pjax:complete', function () {
+  window.refreshFn()
+
+  document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+  })
+
+  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+  typeof chatBtnFn === 'function' && chatBtnFn()
+  typeof panguInit === 'function' && panguInit()
+
+  // google analytics
+  typeof gtag === 'function' && gtag('config', '', {'page_path': window.location.pathname});
+
+  // baidu analytics
+  typeof _hmt === 'object' && _hmt.push(['_trackPageview',window.location.pathname]);
+
+  typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+
+  // Analytics
+  if (false) {
+    MtaH5.pgv()
+  }
+
+  // prismjs
+  typeof Prism === 'object' && Prism.highlightAll()
+
+  typeof preloader === 'object' && preloader.endLoading()
+})
+
+document.addEventListener('pjax:error', (e) => {
+  if (e.request.status === 404) {
+    pjax.loadUrl('/404.html')
+  }
+})</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
